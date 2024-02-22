@@ -54,7 +54,7 @@ class BooksProfile extends StatelessWidget {
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               color: Color(0xffc44536),
-                              fontSize: 24,
+                              fontSize: 18,
                             ),
                           ),
                         ),

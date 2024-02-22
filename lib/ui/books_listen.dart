@@ -170,14 +170,14 @@ class BooksListen extends StatelessWidget {
                           const Text(
                             "Chapter 2",
                             style: TextStyle(
-                              fontSize: 32,
+                              fontSize: 28,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
                           Column(
                             children: [
                               SizedBox(
-                                height: 50,
+                                height: 35,
                                 width: MediaQuery.of(context).size.width,
                                 child: ListView.builder(
                                   itemBuilder: (ctx, i) => Bars(
@@ -204,7 +204,7 @@ class BooksListen extends StatelessWidget {
                             ],
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               IconButton(
                                 icon: const Icon(
@@ -224,10 +224,6 @@ class BooksListen extends StatelessWidget {
                               ),
                               Container(
                                 alignment: Alignment.center,
-                                padding: const EdgeInsets.only(
-                                  bottom: 16,
-                                  right: 15,
-                                ),
                                 decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Color(0xffc44536),
@@ -237,7 +233,7 @@ class BooksListen extends StatelessWidget {
                                   icon: const Icon(
                                     Icons.pause,
                                     color: Colors.white,
-                                    size: 48,
+                                    size: 40,
                                   ),
                                   onPressed: () {},
                                 ),
