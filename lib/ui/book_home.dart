@@ -1,5 +1,7 @@
 import 'package:ebook/ui/books_profile.dart';
+import 'package:ebook/widgets/manage_voice_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../models/book_model.dart';
 import 'books_details.dart';
 
@@ -48,7 +50,9 @@ class BooksHome extends StatelessWidget {
                       color: Colors.white,
                       size: 35,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      //Get.dialog(InvoiceDialog());
+                    },
                   ),
                 ],
               ),
@@ -94,7 +98,7 @@ class BooksHome extends StatelessWidget {
                         height: 10,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
-                          color: Color(0xffc44536),
+                          color: const Color(0xffc44536),
                         ),
                       ),
                       const BookSection(

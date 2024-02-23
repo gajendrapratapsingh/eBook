@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'dart:ui';
 
+import 'package:ebook/widgets/manage_voice_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:get/get.dart';
 import 'dart:math';
 import '../models/book_data.dart';
 import '../models/book_model.dart';
@@ -18,9 +21,30 @@ class BooksListen extends StatelessWidget {
   double volume = 0.5;
   double pitch = 0.5;
   double rate = 0.3;
-  String textToSpeak = "This is a basic example to get you started. You can enhance the app by adding more features such as pausing, stopping, seeking, displaying playback duration, handling errors, etc. Make sure to handle exceptions and errors appropriately, especially when dealing with network requests and audio playback.";
+  String textToSpeak = "अमृत राय (सन् 1921 ई.-सन् 1996 ई.) का जन्म वाराणसी, उत्तर प्रदेश में हुआ। वह उपन्यासकार, निबन्धकार, समीक्षक, व्यंग्यकार और अनुवादक थे। अमृत राय प्रेमचंद के छोटे बेटे हैं। पिता की तरह मूलतः कहानीकार व उपन्यासकार थे । श्रेष्ठ अनुवादक व जीवनीकार के रूप में भी ख्याति । प्रेमचंद की जीवनी 'कलम का सिपाही' के लिए साहित्य अकादमी पुरस्कार से सम्मानित हुए । नाट्य-लेखन में भी सक्रिय रहे। अंग्रेजी, बंगला और हिन्दी पर समान अधिकार था । अमृतराय जी का विवाह सुभद्रा कुमारी चौहान जी की बेटी सुधा चौहान से हुआ था। सुधा ने सुभद्रा कुमारी चौहान तथा अपने पिता लक्षमण सिंह जी की संयुक्त जीवनी लिखी - 'मिला तेज से तेज'। प्रेमचंद की बिखरी रचनाओं के संपादन के अतिरिक्त आपने 'हंस' का संपादन अपने ही अंदाज़ में किया। कृतियाँ : 'साहित्य में संयुक्त मोर्चा', 'सुबह का रंग', 'लाल धरती', 'नई समीक्षा', 'नागफनी का देश', 'हाथी के दांत', 'अग्निशिखा', 'फांसी के तख्ते से', 'कस्बे का एक दिन', 'गीली मिट्टी', 'कठघरे', 'जंगले', 'सहचिंतन', 'भटियाली', 'आधुनिक भावबोध की संज्ञा', 'बतरस', 'चतुरंग', 'सारंग' और 'धुआं'। 'प्रेमचन्द', 'कलम का सिपाही' (जीवनी), 'बीज' (उपन्यास), 'तिरंगा कफ़न' (कहानी-संग्रह)। अनुवाद : 'स्पार्टाकस' का अनुवाद 'आदिविद्रोही', 'हैमलेट' का अनुवाद 'समरगाथा'।";
   double duration = 0.0;
   double position = 0.0;
+
+  late Timer _timer;
+  int _seconds = 0;
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
+      oneSec, (Timer timer) {
+      // setState(() {
+      //   _seconds++;
+      // });
+    },
+    );
+  }
+
+  String _formatDuration(Duration duration) {
+    String hours = (duration.inHours % 60).toString().padLeft(2, '0');
+    String minutes = (duration.inMinutes % 60).toString().padLeft(2, '0');
+    String seconds = (duration.inSeconds % 60).toString().padLeft(2, '0');
+    return '$hours:$minutes:$seconds';
+  }
 
   // @override
   // void initState() {
@@ -99,7 +123,9 @@ class BooksListen extends StatelessWidget {
                             color: Colors.white,
                             size: 35,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            //showBottomSheet();
+                          },
                         )
                       ],
                     ),
@@ -168,9 +194,7 @@ class BooksListen extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  const SizedBox(
-                    height: 5,
-                  ),
+                  const SizedBox(height: 5),
                   Text(
                     //"By Afia Atakora",
                     "By ${Book.allBooks[index!].name!}",
@@ -180,9 +204,7 @@ class BooksListen extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                  const SizedBox(height: 8),
                   Expanded(
                     child: Container(
                       width: double.infinity,
@@ -226,9 +248,18 @@ class BooksListen extends StatelessWidget {
                               const SizedBox(
                                 height: 20,
                               ),
+                              StreamBuilder<int>(
+                                stream: Stream.periodic(const Duration(seconds: 1), (i) => i),
+                                builder: (context, snapshot) {
+                                  Duration duration = Duration(seconds: _seconds);
+                                  return Text(
+                                    _formatDuration(duration),
+                                    style: const TextStyle(fontSize: 24),
+                                  );
+                                },
+                              ),
                               const Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text("01:33"),
                                   Text("08:47"),
@@ -287,7 +318,9 @@ class BooksListen extends StatelessWidget {
                                   color: Colors.grey,
                                   size: 32,
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.dialog(const ManageVoiceDialog());
+                                },
                               ),
                             ],
                           ),
@@ -305,10 +338,15 @@ class BooksListen extends StatelessWidget {
   }
 
   Future<void> speak() async {
+    //await flutterTts.setLanguage("en-US");
+    await flutterTts.setLanguage("hi-IN");
+    await flutterTts.setVoice({"language": "hi-IN", "gender": "male"});
     await flutterTts.setVolume(volume);
     await flutterTts.setPitch(pitch);
     await flutterTts.setSpeechRate(rate);
     await flutterTts.speak(textToSpeak);
+    // Set the voice to a male voice
+    //await flutterTts.setVoice({"name": "en-us-x-sfg#male_1-local"});
   }
 
   Future<void> pause() async {
@@ -319,7 +357,59 @@ class BooksListen extends StatelessWidget {
     await flutterTts.stop();
   }
 
-  // Future<void> forward() async {
+  Future<void> forward() async {
+    await flutterTts.stop();
+    // setState(() {
+    //   position += 10.0; // Forward by 10 seconds (adjust as needed)
+    // });
+    //await flutterTts.seekTo(position);
+    await speak();
+  }
+
+  void showBottomSheet() {
+    Widget bottomSheet = Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10.0),
+          topRight: Radius.circular(10.0),
+        ),
+      ),
+      child: Wrap(
+        children: <Widget>[
+          ListTile(
+            leading: const Icon(Icons.music_note),
+            title: const Text('Music'),
+            onTap: () => Get.back(result: 'Music'),
+          ),
+          ListTile(
+            leading: const Icon(Icons.photo),
+            title: const Text('Photo'),
+            onTap: () => Get.back(result: 'Photo'),
+          ),
+          ListTile(
+            leading: const Icon(Icons.videocam),
+            title: const Text('Video'),
+            onTap: () => Get.back(result: 'Video'),
+          ),
+        ],
+      ),
+    );
+
+    Get.bottomSheet(
+      bottomSheet,
+      isDismissible: true,
+      enableDrag: true,
+      backgroundColor: Colors.transparent,
+    ).then((value) {
+      // Check if value is not null before accessing it
+      if (value != null) {
+        print('Selected: $value');
+      }
+    });
+  }
+
+// Future<void> forward() async {
   //   await flutterTts.stop();
   //   // Forward by 10 seconds (adjust as needed)
   //   await flutterTts.setPlaybackRate(rate + 0.5);
