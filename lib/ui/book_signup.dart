@@ -1,7 +1,9 @@
+import 'package:ebook/controllers/sign_up_controller.dart';
 import 'package:ebook/theme/theme.dart';
 import 'package:ebook/ui/book_login.dart';
 import 'package:ebook/widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -12,8 +14,17 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+
   final _formSignupKey = GlobalKey<FormState>();
   bool agreePersonalData = true;
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
+
+  bool rememberPassword = true;
+
+  final _signupController = Get.put(SignupController());
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -91,10 +102,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       // email
                       TextFormField(
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter Email';
+                          bool emailValid = RegExp("^[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9\.]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})\$").hasMatch(value!.trim());
+                          //bool emailValid = RegExp("^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})\$").hasMatch(value!.trim());
+                          if(value.isEmpty) {
+                            return "Please enter valid email";
                           }
-                          return null;
+                          else if(!emailValid) {
+                            return "Please enter valid email";
+                          }
                         },
                         decoration: InputDecoration(
                           label: const Text('Email'),

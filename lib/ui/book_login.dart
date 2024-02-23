@@ -1,8 +1,8 @@
+import 'package:ebook/controllers/LoginController.dart';
 import 'package:ebook/theme/theme.dart';
 import 'package:ebook/ui/book_signup.dart';
-import 'package:ebook/widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
+import 'package:get/get.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -12,8 +12,14 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+
   final _formSignInKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
+
   bool rememberPassword = true;
+
+  final _loginController = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -61,11 +67,17 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                           TextFormField(
                             validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter Email';
+                              bool emailValid = RegExp("^[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9\.]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})\$").hasMatch(value!.trim());
+                              //bool emailValid = RegExp("^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})\$").hasMatch(value!.trim());
+                              if(value.isEmpty) {
+                                return "Please enter valid email";
                               }
-                              return value;
+                              else if(!emailValid) {
+                                return "Please enter valid email";
+                              }
                             },
+                            controller: emailController,
+                            keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               label: const Text('Email'),
                               hintText: 'Enter Email',
@@ -89,9 +101,10 @@ class _SignInScreenState extends State<SignInScreen> {
                           const SizedBox(
                             height: 25.0,
                           ),
-                          TextFormField(
-                            obscureText: true,
+                          Obx(() => TextFormField(
+                            obscureText: _loginController.isVisible,
                             obscuringCharacter: '*',
+                            controller: passController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter Password';
@@ -99,26 +112,28 @@ class _SignInScreenState extends State<SignInScreen> {
                               return null;
                             },
                             decoration: InputDecoration(
-                                label: const Text('Password'),
-                                hintText: 'Enter Password',
-                                hintStyle: const TextStyle(
-                                  color: Colors.black26,
+                              label: const Text('Password'),
+                              hintText: 'Enter Password',
+                              hintStyle: const TextStyle(
+                                color: Colors.black26,
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Colors.black12, // Default border color
                                 ),
-                                border: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    color: Colors.black12, // Default border color
-                                  ),
-                                  borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Colors.black12, // Default border color
                                 ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    color: Colors.black12, // Default border color
-                                  ),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                suffixIcon: IconButton(icon: Icon(Icons.visibility), onPressed: (){})
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              suffixIcon: IconButton(onPressed: () {
+                                _loginController.setVisibilty();
+                              }, icon: _loginController.isVisible ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off)),
                             ),
-                          ),
+                          )),
                           const SizedBox(
                             height: 25.0,
                           ),
@@ -162,23 +177,38 @@ class _SignInScreenState extends State<SignInScreen> {
                             width: double.infinity,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                //shape: CircleBorder(),
                                   backgroundColor: Colors.indigo
                               ),
                               onPressed: () {
-                                if (_formSignInKey.currentState!.validate() &&
-                                    rememberPassword) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text('Processing Data'),
-                                    ),
-                                  );
-                                } else if (!rememberPassword) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text(
-                                            'Please agree to the processing of personal data')),
-                                  );
+                                if(_formSignInKey.currentState!.validate() && rememberPassword) {
+                                  _loginController.login(emailController.text.trim(), passController.text.trim(), context).then((user) {
+                                       if(user != null) {
+                                         ScaffoldMessenger.of(context).showSnackBar(
+                                           SnackBar(
+                                             content: Text(user.email!),
+                                           ),
+                                         );
+                                       }
+                                       else{
+                                         ScaffoldMessenger.of(context).showSnackBar(
+                                           const SnackBar(
+                                             content: Text("Invalid Credentials!!"),
+                                           ),
+                                         );
+                                       }
+                                  });
+                                  // ScaffoldMessenger.of(context).showSnackBar(
+                                  //   const SnackBar(
+                                  //     content: Text('Processing Data'),
+                                  //   ),
+                                  // );
+                                }
+                                else if(!rememberPassword) {
+                                  // ScaffoldMessenger.of(context).showSnackBar(
+                                  //   const SnackBar(
+                                  //       content: Text(
+                                  //           'Please agree to the processing of personal data')),
+                                  // );
                                 }
                               },
                               child: const Text('Sign in', style: TextStyle(color: Colors.white)),
@@ -266,7 +296,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
             ],
-          ))
+          )),
+          Obx(() => _loginController.loginState == LoginState.Busy ? const Center(child: CircularProgressIndicator(strokeWidth: 3.0)) : const SizedBox())
         ],
       ),
     );

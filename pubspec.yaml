@@ -40,6 +40,9 @@ dependencies:
   flutter_tts: ^3.8.5
   get: ^4.6.6
   icons_plus: ^5.0.0
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.15.2
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:

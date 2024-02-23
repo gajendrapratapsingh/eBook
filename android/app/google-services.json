@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "433555342923",
+    "project_id": "ebook-4567f",
+    "storage_bucket": "ebook-4567f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433555342923:android:8fa93a3133a9688e536fce",
+        "android_client_info": {
+          "package_name": "com.stories.ebook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSibdFXnkxZhqo1Ao8YnbTmjddqnJDRqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
