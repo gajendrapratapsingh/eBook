@@ -30,9 +30,9 @@ class _SignInScreenState extends State<SignInScreen> {
             children: [
               const Expanded(flex: 1, child: SizedBox(height: 10)),
               Expanded(
-                flex: 8,
+                flex: 5,
                 child: Container(
-                  padding: const EdgeInsets.fromLTRB(25.0, 50.0, 25.0, 20.0),
+                  padding: const EdgeInsets.fromLTRB(25.0, 30.0, 25.0, 20.0),
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -44,18 +44,20 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: Form(
                       key: _formSignInKey,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            'Welcome back',
-                            style: TextStyle(
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.w900,
-                              color: lightColorScheme.primary,
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'Sign In',
+                              style: TextStyle(
+                                fontSize: 25.0,
+                                fontWeight: FontWeight.w900,
+                                color: lightColorScheme.primary,
+                              ),
                             ),
                           ),
                           const SizedBox(
-                            height: 40.0,
+                            height: 20.0,
                           ),
                           TextFormField(
                             validator: (value) {
