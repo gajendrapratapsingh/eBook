@@ -1,10 +1,11 @@
-import 'package:ebook/models/book_data.dart';
 import 'package:ebook/ui/books_profile.dart';
 import 'package:flutter/material.dart';
 import '../models/book_model.dart';
 import 'books_details.dart';
 
 class BooksHome extends StatelessWidget {
+  const BooksHome({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class BooksHome extends StatelessWidget {
                     onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => BooksProfile(),
+                        builder: (context) => const BooksProfile(),
                       ),
                     ),
                   ),
@@ -96,10 +97,10 @@ class BooksHome extends StatelessWidget {
                           color: Color(0xffc44536),
                         ),
                       ),
-                      BookSection(
+                      const BookSection(
                         heading: "Continue Reading",
                       ),
-                      BookSection(
+                      const BookSection(
                         heading: "Discover More",
                       ),
                     ],
@@ -116,12 +117,12 @@ class BooksHome extends StatelessWidget {
 
 class BookSection extends StatelessWidget {
   final String heading;
-  BookSection({required this.heading});
+  const BookSection({super.key, required this.heading});
   @override
   Widget build(BuildContext context) {
     List<Book> bookList;
-    if (heading == "Continue Reading") {
-      bookList = recentBooks;
+    if(heading == "Continue Reading") {
+      bookList = Book.allBooks;
     } else if (heading == "Discover More") {
       bookList = Book.allBooks;
     } else if (heading == "BookShelf") {
@@ -138,9 +139,7 @@ class BookSection extends StatelessWidget {
           ),
         ),
         Container(
-          padding: const EdgeInsets.symmetric(
-            vertical: 5,
-          ),
+          padding: const EdgeInsets.symmetric(vertical: 5),
           height: MediaQuery.of(context).size.height * 0.4,
           child: ListView.builder(
             padding: EdgeInsets.zero,

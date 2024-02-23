@@ -8,8 +8,8 @@ class BooksRead extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfffff8ee),
-      body: Container(
+      backgroundColor: const Color(0xfffff8ee),
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Stack(

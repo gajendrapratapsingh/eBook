@@ -1,4 +1,5 @@
 import 'package:ebook/ui/books_splash.dart';
+import 'package:ebook/ui/text_speech.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.amber,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: "SourceSansPro"),
-      home: BooksSplash(),
+      home: TextToSpeechScreen(),
     );
   }
 }

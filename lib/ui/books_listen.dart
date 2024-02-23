@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'dart:math';
 import '../models/book_data.dart';
 import '../models/book_model.dart';
@@ -12,6 +13,38 @@ class BooksListen extends StatelessWidget {
   final String? section;
 
   BooksListen({super.key, this.index, this.section});
+
+  final FlutterTts flutterTts = FlutterTts();
+  double volume = 0.5;
+  double pitch = 0.5;
+  double rate = 0.3;
+  String textToSpeak = "This is a basic example to get you started. You can enhance the app by adding more features such as pausing, stopping, seeking, displaying playback duration, handling errors, etc. Make sure to handle exceptions and errors appropriately, especially when dealing with network requests and audio playback.";
+  double duration = 0.0;
+  double position = 0.0;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   flutterTts.setStartHandler(() {
+  //     print("Playing");
+  //   });
+  //   flutterTts.setCompletionHandler(() {
+  //     print("Complete");
+  //   });
+  //   flutterTts.setErrorHandler((msg) {
+  //     print("Error: $msg");
+  //   });
+  //   flutterTts.setDurationHandler((newDuration) {
+  //     setState(() {
+  //       duration = newDuration.toDouble();
+  //     });
+  //   });
+  //   flutterTts.setPositionHandler((newPosition) {
+  //     setState(() {
+  //       position = newPosition.toDouble();
+  //     });
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -235,7 +268,9 @@ class BooksListen extends StatelessWidget {
                                     color: Colors.white,
                                     size: 40,
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    speak();
+                                  },
                                 ),
                               ),
                               IconButton(
@@ -268,19 +303,42 @@ class BooksListen extends StatelessWidget {
       ),
     );
   }
+
+  Future<void> speak() async {
+    await flutterTts.setVolume(volume);
+    await flutterTts.setPitch(pitch);
+    await flutterTts.setSpeechRate(rate);
+    await flutterTts.speak(textToSpeak);
+  }
+
+  Future<void> pause() async {
+    await flutterTts.pause();
+  }
+
+  Future<void> stop() async {
+    await flutterTts.stop();
+  }
+
+  // Future<void> forward() async {
+  //   await flutterTts.stop();
+  //   // Forward by 10 seconds (adjust as needed)
+  //   await flutterTts.setPlaybackRate(rate + 0.5);
+  //   await speak();
+  // }
 }
 
 class Bars extends StatelessWidget {
   final double? height;
   final Color? color;
 
-  Bars({this.height, this.color});
+  const Bars({super.key, this.height, this.color});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 4,
-      color: Color(0xfffff8ee),
-      margin: EdgeInsets.symmetric(horizontal: 2),
+      color: const Color(0xfffff8ee),
+      margin: const EdgeInsets.symmetric(horizontal: 2),
       child: Center(
         child: Container(
           height: height,

@@ -38,12 +38,10 @@ class BooksSplash extends StatelessWidget {
                       height: 10,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: Color(0xffC44536),
+                        color: const Color(0xffC44536),
                       ),
                     ),
-                    const SizedBox(
-                      height: 50,
-                    ),
+                    const SizedBox(height: 50),
                     const Text(
                       "read\nlisten\nget Inspired",
                       style: TextStyle(
@@ -60,7 +58,7 @@ class BooksSplash extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Container(
-                      margin: EdgeInsets.all(40),
+                      margin: const EdgeInsets.all(40),
                       height: 50,
                       width: 100,
                       decoration: BoxDecoration(

@@ -1,8 +1,8 @@
+import 'package:ebook/models/book_data.dart';
+import 'package:ebook/models/book_model.dart';
 import 'package:ebook/ui/book_read.dart';
 import 'package:ebook/ui/books_listen.dart';
 import 'package:flutter/material.dart';
-import '../models/book_data.dart';
-import '../models/book_model.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class BooksDetails extends StatelessWidget {
@@ -20,8 +20,8 @@ class BooksDetails extends StatelessWidget {
       bookList = Book.allBooks;
     }
     return Scaffold(
-      backgroundColor: Color(0xfffff8ee),
-      body: Container(
+      backgroundColor: const Color(0xfffff8ee),
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Stack(
@@ -132,7 +132,7 @@ class BooksDetails extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       RatingBarIndicator(
-                        rating: 3,
+                        rating: 4,
                         itemCount: 5,
                         itemSize: 25.0,
                         physics: const BouncingScrollPhysics(),
@@ -156,10 +156,8 @@ class BooksDetails extends StatelessWidget {
                       //     print(value);
                       //   },
                       // ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
+                      const SizedBox(width: 10),
+                      const Text(
                         "4.0",
                         // bookList[index].rating.toString(),
                         style: TextStyle(
@@ -208,11 +206,11 @@ class BooksDetails extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Color(0xfffff8ee).withOpacity(0.1),
+                      const Color(0xfffff8ee).withOpacity(0.1),
                       Colors.white.withOpacity(0.3),
-                      Color(0xfffff8ee).withOpacity(0.7),
-                      Color(0xfffff8ee).withOpacity(0.8),
-                      Color(0xfffff8ee),
+                      const Color(0xfffff8ee).withOpacity(0.7),
+                      const Color(0xfffff8ee).withOpacity(0.8),
+                      const Color(0xfffff8ee),
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -231,7 +229,7 @@ class BooksDetails extends StatelessWidget {
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BooksRead(),
+                            builder: (context) => const BooksRead(),
                           ),
                         ),
                         child: const Text(
