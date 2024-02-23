@@ -116,26 +116,29 @@ class _TextToSpeechScreenState extends State<TextToSpeechScreen> {
           children: [
             Text(
               textToSpeak,
-              style: TextStyle(fontSize: 20.0),
+              style: const TextStyle(fontSize: 20.0),
             ),
             const SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  icon: Icon(Icons.play_arrow),
-                  onPressed: speak,
+                  icon: const Icon(Icons.play_arrow),
+                  onPressed: (){
+                    _formatDuration(const Duration(seconds: 0));
+                    speak();
+                  },
                 ),
                 IconButton(
-                  icon: Icon(Icons.pause),
+                  icon: const Icon(Icons.pause),
                   onPressed: pause,
                 ),
                 IconButton(
-                  icon: Icon(Icons.stop),
+                  icon: const Icon(Icons.stop),
                   onPressed: stop,
                 ),
                 IconButton(
-                  icon: Icon(Icons.fast_forward),
+                  icon: const Icon(Icons.fast_forward),
                   onPressed: forward,
                 ),
               ],
@@ -152,6 +155,18 @@ class _TextToSpeechScreenState extends State<TextToSpeechScreen> {
               },
             ),
             Text('Position: ${position.toStringAsFixed(2)} / ${duration.toStringAsFixed(2)} seconds'),
+            const SizedBox(height: 20.0),
+            Slider(
+              value: volume,
+              min: 0.0,
+              max: 1.0,
+              onChanged: (newValue) {
+                setState(() {
+                  volume = newValue;
+                  flutterTts.setVolume(volume);
+                });
+              },
+            ),
             const SizedBox(height: 20.0),
             Text('Volume: $volume'),
             Slider(
