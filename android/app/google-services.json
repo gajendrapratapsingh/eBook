@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "433555342923",
-    "project_id": "ebook-4567f",
-    "storage_bucket": "ebook-4567f.appspot.com"
+    "project_number": "352098688783",
+    "project_id": "ebook-2cb99",
+    "storage_bucket": "ebook-2cb99.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:433555342923:android:8fa93a3133a9688e536fce",
+        "mobilesdk_app_id": "1:352098688783:android:f8b92cf1dcedbdbaa7e87a",
         "android_client_info": {
           "package_name": "com.stories.ebook"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBSibdFXnkxZhqo1Ao8YnbTmjddqnJDRqo"
+          "current_key": "AIzaSyCBvk2pHoSYHZZpxqFPonqmaYCSGgJV0vE"
         }
       ],
       "services": {
