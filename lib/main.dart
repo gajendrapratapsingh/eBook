@@ -1,9 +1,13 @@
 import 'package:ebook/ui/book_login.dart';
 import 'package:ebook/ui/book_welcome.dart';
-import 'package:ebook/theme/theme.dart';
+import 'package:ebook/theme/themes.dart';
+import 'package:ebook/ui/books_splash.dart';
+import 'package:ebook/utils/routes/pages.dart';
+import 'package:ebook/utils/routes/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ebook/bindings/my_bindings.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +31,9 @@ class MyApp extends StatelessWidget {
       //     visualDensity: VisualDensity.adaptivePlatformDensity,
       //     fontFamily: "SourceSansPro"
       // ),
-      home: const WelcomeScreen(),
+      getPages: Pages.list,
+      initialRoute: Routes.splashScreen,
+      initialBinding: MyBinding(),
     );
   }
 }

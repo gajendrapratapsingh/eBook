@@ -1,5 +1,5 @@
 import 'package:ebook/controllers/sign_up_controller.dart';
-import 'package:ebook/theme/theme.dart';
+import 'package:ebook/theme/themes.dart';
 import 'package:ebook/ui/book_login.dart';
 import 'package:ebook/widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';

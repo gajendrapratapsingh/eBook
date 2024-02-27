@@ -1,4 +1,4 @@
-import 'package:ebook/theme/theme.dart';
+import 'package:ebook/theme/themes.dart';
 import 'package:ebook/ui/book_login.dart';
 import 'package:ebook/ui/book_signup.dart';
 import 'package:ebook/widgets/welcome_button.dart';

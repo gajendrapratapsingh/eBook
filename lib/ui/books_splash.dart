@@ -1,5 +1,7 @@
 import 'package:ebook/ui/book_home.dart';
+import 'package:ebook/utils/routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BooksSplash extends StatelessWidget {
   const BooksSplash({super.key});
@@ -71,11 +73,7 @@ class BooksSplash extends StatelessWidget {
                           color: Colors.white,
                           size: 30,
                         ),
-                        onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BooksHome(),
-                            )),
+                        onPressed: () => Get.toNamed(Routes.loginScreen)
                       ),
                     )
                   ],
