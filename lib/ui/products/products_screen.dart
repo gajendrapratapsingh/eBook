@@ -1,8 +1,8 @@
+import 'package:ebook/components/product_card.dart';
+import 'package:ebook/models/Product.dart';
+import 'package:ebook/ui/details/details_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/product_card.dart';
-import 'package:shop_app/models/Product.dart';
 
-import '../details/details_screen.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
@@ -29,10 +29,8 @@ class ProductsScreen extends StatelessWidget {
             itemBuilder: (context, index) => ProductCard(
               product: demoProducts[index],
               onPress: () => Navigator.pushNamed(
-                context,
-                DetailsScreen.routeName,
-                arguments:
-                    ProductDetailsArguments(product: demoProducts[index]),
+                context, DetailsScreen.routeName,
+                arguments: ProductDetailsArguments(product: demoProducts[index]),
               ),
             ),
           ),

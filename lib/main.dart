@@ -1,3 +1,4 @@
+import 'package:ebook/theme/theme.dart';
 import 'package:ebook/ui/book_login.dart';
 import 'package:ebook/ui/book_welcome.dart';
 import 'package:ebook/theme/themes.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'eBook Stories',
       debugShowCheckedModeBanner: false,
+      //theme: AppTheme.lightTheme(context),
       theme: lightMode, // Use default theme initially
       darkTheme: darkMode,
       themeMode: ThemeMode.system, // Use system theme initially

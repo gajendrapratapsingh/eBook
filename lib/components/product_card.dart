@@ -1,8 +1,9 @@
+import 'package:ebook/models/Product.dart';
+import 'package:ebook/models/Product.dart';
+import 'package:ebook/widgets/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../constants.dart';
-import '../models/Product.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
@@ -34,12 +35,12 @@ class ProductCard extends StatelessWidget {
                   color: kSecondaryColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Image.asset(product.images[0]),
+                //child: "Image.asset(product.images[0])",
               ),
             ),
             const SizedBox(height: 8),
             Text(
-              product.title,
+              "product.title",
               style: Theme.of(context).textTheme.bodyMedium,
               maxLines: 2,
             ),
@@ -47,7 +48,7 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "\$${product.price}",
+                  "${product.price}",
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,

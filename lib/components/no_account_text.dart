@@ -1,7 +1,9 @@
+import 'package:ebook/ui/book_signup.dart';
+import 'package:ebook/utils/routes/routes.dart';
+import 'package:ebook/widgets/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../constants.dart';
-import '../screens/sign_up/sign_up_screen.dart';
 
 class NoAccountText extends StatelessWidget {
   const NoAccountText({
@@ -18,7 +20,7 @@ class NoAccountText extends StatelessWidget {
           style: TextStyle(fontSize: 16),
         ),
         GestureDetector(
-          onTap: () => Navigator.pushNamed(context, SignUpScreen.routeName),
+          onTap: () => Get.toNamed(Routes.registerScreen),
           child: const Text(
             "Sign Up",
             style: TextStyle(fontSize: 16, color: kPrimaryColor),

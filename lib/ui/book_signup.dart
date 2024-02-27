@@ -1,3 +1,4 @@
+import 'package:ebook/components/socal_card.dart';
 import 'package:ebook/controllers/sign_up_controller.dart';
 import 'package:ebook/theme/themes.dart';
 import 'package:ebook/ui/book_login.dart';
@@ -218,16 +219,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       const SizedBox(
                         height: 30.0,
                       ),
-                      // sign up social media logo
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      //   children: [
-                      //     Logo(Logos.facebook_f),
-                      //     Logo(Logos.twitter),
-                      //     Logo(Logos.google),
-                      //     Logo(Logos.apple),
-                      //   ],
-                      // ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SocalCard(
+                            icon: "assets/icons/google-icon.svg",
+                            press: () {},
+                          ),
+                          SocalCard(
+                            icon: "assets/icons/facebook-2.svg",
+                            press: () {},
+                          ),
+                          SocalCard(
+                            icon: "assets/icons/twitter.svg",
+                            press: () {},
+                          ),
+                        ],
+                      ),
                       const SizedBox(
                         height: 25.0,
                       ),

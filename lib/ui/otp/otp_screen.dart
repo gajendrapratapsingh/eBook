@@ -1,6 +1,6 @@
+import 'package:ebook/widgets/constants.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
 
 import 'components/otp_form.dart';
 
