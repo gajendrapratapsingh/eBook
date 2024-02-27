@@ -231,9 +231,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                             ],
                           ),
-                          const SizedBox(
-                            height: 25.0,
-                          ),
+                          const SizedBox(height: 25.0),
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
@@ -244,7 +242,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 if(_formSignInKey.currentState!.validate() && rememberPassword) {
                                   _loginController.login(emailController.text.trim(), passController.text.trim(), context).then((user) {
                                        if(user != null) {
-                                         Get.toNamed(Routes.bookHomeScreen);
+                                         Get.toNamed(Routes.initScreen);
                                          // ScaffoldMessenger.of(context).showSnackBar(
                                          //   SnackBar(
                                          //     content: Text(user.email!),
@@ -276,9 +274,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               child: const Text('Sign in', style: TextStyle(color: Colors.white)),
                             ),
                           ),
-                          const SizedBox(
-                            height: 25.0,
-                          ),
+                          const SizedBox(height: 25.0),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -326,9 +322,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                             ],
                           ),
-                          const SizedBox(
-                            height: 20.0,
-                          ),
+                          const SizedBox(height: 20.0),
                           // don't have an account
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
