@@ -218,6 +218,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                 ],
                               ),
                               GestureDetector(
+                                onTap: (){
+                                  Get.toNamed(Routes.forgetScreen);
+                                },
                                 child: Text(
                                   'Forget password?',
                                   style: TextStyle(

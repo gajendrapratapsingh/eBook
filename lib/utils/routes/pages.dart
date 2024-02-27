@@ -3,6 +3,7 @@ import 'package:ebook/ui/book_login.dart';
 import 'package:ebook/ui/book_read.dart';
 import 'package:ebook/ui/book_signup.dart';
 import 'package:ebook/ui/books_splash.dart';
+import 'package:ebook/ui/forgot_password/forgot_password_screen.dart';
 import 'package:get/get.dart';
 import 'routes.dart';
 
@@ -32,6 +33,11 @@ class Pages {
       transition: Transition.rightToLeftWithFade,
       // binding: SplashBinding(),
     ),
-
+    GetPage(
+      name: Routes.forgetScreen,
+      page: () => ForgotPasswordScreen(),
+      transition: Transition.rightToLeftWithFade,
+      // binding: SplashBinding(),
+    ),
   ];
 }
