@@ -1,3 +1,4 @@
+import 'package:ebook/screen/Splash/splashScreen.dart';
 import 'package:ebook/ui/book_home.dart';
 import 'package:ebook/ui/book_login.dart';
 import 'package:ebook/ui/book_read.dart';
@@ -21,7 +22,7 @@ class Pages {
     ),
     GetPage(
       name: Routes.splashScreen,
-      page: () => BooksSplash(),
+      page: () => SplashScreen(),
     ),
     GetPage(
       name: Routes.bookHomeScreen,
